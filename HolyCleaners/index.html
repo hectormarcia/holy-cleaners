@@ -598,11 +598,17 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Smooth scrolling
+        // Smooth scrolling with header offset
         function scrollToSection(id) {
             const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+            const header = document.querySelector('header');
+            if (element && header) {
+                const headerHeight = header.offsetHeight;
+                const elementPosition = element.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
             }
         }
 
